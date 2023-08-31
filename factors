@@ -1,33 +1,5 @@
-import sys
+#!/usr/bin/env bash
+# Factorize as many numbers as possible into a product of two smaller numbers.
 
-def factorize(number):
-    factors = []
-    for i in range(2, number):
-        if number % i == 0:
-            factors.append((i, number // i))
-    return factors
-
-def main():
-    if len(sys.argv) != 2:
-        print("Usage: factors <file>")
-        return
-
-    input_file = sys.argv[1]
-
-    try:
-        with open(input_file, 'r') as file:
-            numbers = file.read().splitlines()
-            for number_str in numbers:
-                try:
-                    number = int(number_str)
-                    factorizations = factorize(number)
-                    for p, q in factorizations:
-                        print(f"{number}={p}*{q}")
-                except ValueError:
-                    print(f"Invalid input: {number_str}")
-    except FileNotFoundError:
-        print(f"File '{input_file}' not found")
-
-if __name__ == "__main__":
-    main()
-
+gcc factors.c -o a
+./a $1
